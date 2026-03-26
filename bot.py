@@ -30,8 +30,13 @@ async def zachquote(ctx):
     quote = requests.get("https://zapi-seven.vercel.app/quote/random")
     await ctx.reply(quote.text)
 
+@bot.command()
+async def flavortownproject(ctx):
+    await ctx.reply("this is a flavortown project :D feel free to follow (https://flavortown.hackclub.com/projects/18266)")
 
 
-
+@bot.command()
+async def help(ctx):
+    await ctx("Heres a list of our commands,?ping check if the bots online,?coinflip does a coinflip, ?zachquote pulls a random zach latta quote, ?flavortownproject shares the link to the flavortown project.")
 
 bot.run(os.getenv("token"),channel="hack-bot")
