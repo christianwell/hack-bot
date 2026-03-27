@@ -3,25 +3,47 @@ import os # for env
 from dotenv import load_dotenv, dotenv_values
 import random #coinflip
 import requests #zapi aka zach quotes
-
-
+import json
 
 load_dotenv()
 bot = Bot(command_prefix="?")
-coin = ["heads", "tails"]
+
 
 @bot.event
 async def on_ready(session):
     print("67")
 
+
+@bot.command()
+async def store(ctx,text):
+    flavortown="flavortown"
+    flavorkey = os.getenv(flavortown)
+    url = "https://flavortown.hackclub.com/api/v1/store/"+ text
+    headers = {
+        "content-type": 'application/json',
+        "Authorization": f"Bearer {flavorkey}"
+    }
+    getstore = requests.get(url, headers=headers)
+    alldata = getstore.json()
+    print(alldata)
+    name = alldata.get("name")
+    description = alldata.get("description")
+
+    finaldata = f"Name:{name}\nDescription: {description}"
+    
+    await ctx.send(finaldata)
+
+    
+    
+    
 @bot.command()
 async def ping(ctx):
-    await ctx.reply(f"its on buddy")
-    print(f"online check made ")
+    await ctx.reply(f"pong 🏓!")
 
 
 @bot.command()
 async def coinflip(ctx):
+    coin = ["heads", "tails"]
     await ctx.reply(random.choice(coin))
 
 
@@ -37,6 +59,6 @@ async def flavortownproject(ctx):
 
 @bot.command()
 async def help(ctx):
-    await ctx("Heres a list of our commands,?ping check if the bots online,?coinflip does a coinflip, ?zachquote pulls a random zach latta quote, ?flavortownproject shares the link to the flavortown project.")
+    await ctx.reply("Heres a list of our commands,?ping check if the bots online,?coinflip does a coinflip, ?zachquote pulls a random zach latta quote, ?flavortownproject shares the link to the flavortown project.")
 
 bot.run(os.getenv("token"),channel="hack-bot")
