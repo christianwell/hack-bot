@@ -5,7 +5,7 @@
 **Art credit:** [parkingTurkeys](https://github.com/parkingTurkeys)
 
 Hack bot is a bot for the platform [hackclub.tv](https://hackclub.tv/hack-bot), the Hack Club version of Twitch!  
-Made by [SrIzan10](https://github.com/SrIzan10/hctv)
+hack club tv is Made by [SrIzan10](https://github.com/SrIzan10/hctv)
 
 **are you in hack club and wish to test ? go to [hackclub.tv/hack-bot](https://hackclub.tv/hack-bot)**
 
