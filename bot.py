@@ -5,7 +5,10 @@ import random #coinflip
 import requests #zapi aka zach quotes
 import json
 
+
 load_dotenv()
+with open("channels.json","r") as f:
+    connectchannels = json.load(f)
 bot = Bot(command_prefix="?")
 flavorkey = os.getenv("flavortown")
 
@@ -66,7 +69,6 @@ async def flavorinfo(ctx,text):
     print(msg)
     await ctx.reply(msg)
     
-    
 @bot.command()
 async def ping(ctx):
     await ctx.reply(f"pong 🏓!")
@@ -92,4 +94,4 @@ async def flavortownproject(ctx):
 async def help(ctx):
     await ctx.reply("Heres a list of our commands,?ping check if the bots online,?coinflip does a coinflip, ?zachquote pulls a random zach latta quote, ?flavortownproject shares the link to the flavortown project.?flavorinfo id get data about a user,?flavorcookies id  get a users cookies,?flavorstore get info about a flavortown store item  " )
 
-bot.run(os.getenv("token"),channel="hack-bot")
+bot.run(os.getenv("token"),channels=connectchannels)
